@@ -65,7 +65,20 @@
 							</view>
 						</view>
 						
-						
+						<view v-if="jh_state==1" class="zaiui-pay-bar" @tap="payTap('lklalipay1')">
+							<view class="cu-avatar sm" style="background-image:url(/static/zaiui/img/juhe.jpeg)" />
+							<view class="content">
+								<view class="text-black">
+									<text class="margin-right-sm">聚合支付</text>
+									<text class="cu-tag line-red radius sm">HOT</text>
+								</view>
+								<view class="text-gray text-sm">数亿用户都在用，安全可托付</view>
+							</view>
+							<view class="action">
+								<radio class="red zaiui-radio" :class="radio=='lklalipay1'?'checked':''"
+									:checked="radio=='lklalipay1'?true:false" value="lklalipay1" />
+							</view>
+						</view>
 						
 						<view class="zaiui-pay-bar" @tap="payTap('wx')">
 							<view class="cu-avatar sm" style="background-image:url(/static/zaiui/img/wechat.png)" />
@@ -102,7 +115,7 @@
 					</radio-group>
 				</view>
 
-				<view v-if="hfb_state==1 || zft_state==1 || xx_state==1" @click="doRecharge()"
+				<view v-if="hfb_state==1 || zft_state==1 || xx_state==1 || jh_state==1" @click="doRecharge()"
 					style="background-color: #007AFF;color: white;width: 90%;height: 80rpx;line-height: 80rpx;text-align: center;margin-left: 5%;border-radius: 10rpx;margin-top: 20rpx;">
 					充值
 				</view>
@@ -140,7 +153,8 @@
 				radio: '',
 				zft_state:0,
 				hfb_state:0,
-				xx_state:0
+				xx_state:0,
+				jh_state:0
 			}
 		},
 		onLoad(option) {
@@ -149,6 +163,7 @@
 				this.zft_state = res.data.zft_state
 				this.hfb_state = res.data.hfb_state
 				this.xx_state = res.data.xx_state
+				this.jh_state = res.data.jh_state
 				
 				if(this.xx_state == 1){
 					this.radio = 'yl'

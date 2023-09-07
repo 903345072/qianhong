@@ -317,7 +317,7 @@
 			setYjRate(uid){
 				var data = {"uid":uid,"value":this.yj_rate}
 				if(this.yj_rate){
-					if(parseFloat(this.yj_rate)>0){
+					if(parseFloat(this.yj_rate)>=0){
 						this.$api.setYjRate(data).then(res=>{
 							uni.showToast({
 								title:"操作成功"
