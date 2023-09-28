@@ -80,7 +80,7 @@
 							</view>
 						</view>
 						
-						<view class="zaiui-pay-bar" @tap="payTap('wx')">
+						<view v-if="wx_state==1" class="zaiui-pay-bar" @tap="payTap('wx')">
 							<view class="cu-avatar sm" style="background-image:url(/static/zaiui/img/wechat.png)" />
 							<view class="content">
 								<view class="text-black">
@@ -115,7 +115,7 @@
 					</radio-group>
 				</view>
 
-				<view v-if="hfb_state==1 || zft_state==1 || xx_state==1 || jh_state==1" @click="doRecharge()"
+				<view v-if="hfb_state==1 || zft_state==1 || xx_state==1 || jh_state==1 || wx_state==1" @click="doRecharge()"
 					style="background-color: #007AFF;color: white;width: 90%;height: 80rpx;line-height: 80rpx;text-align: center;margin-left: 5%;border-radius: 10rpx;margin-top: 20rpx;">
 					充值
 				</view>
@@ -154,7 +154,8 @@
 				zft_state:0,
 				hfb_state:0,
 				xx_state:0,
-				jh_state:0
+				jh_state:0,
+				wx_state:0
 			}
 		},
 		onLoad(option) {
@@ -164,7 +165,7 @@
 				this.hfb_state = res.data.hfb_state
 				this.xx_state = res.data.xx_state
 				this.jh_state = res.data.jh_state
-				
+				this.wx_state = res.data.wx_state
 				if(this.xx_state == 1){
 					this.radio = 'yl'
 				}
